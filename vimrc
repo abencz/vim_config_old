@@ -287,7 +287,7 @@ else
 	" color scheme for terminal operation - special case if 256 colors are
 	" available
 	if &t_Co == 256
-		colorscheme desert256
+		colorscheme xoria256
 	else
 		colorscheme desert
 	endif
