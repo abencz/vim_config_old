@@ -123,6 +123,22 @@ map <leader>ge :cs find e <cword><CR>
 map <leader>gf :cs find f <cword><CR>
 map <leader>gi :cs find i <cword><CR>
 
+" special
+map <leader>## :!sudo vim %<CR>
+map <leader>#w :w !sudo tee %<CR>
+
+" ClearCase integration
+map <leader>ca :!cleartool.exe lsactivity -cact<CR>
+map <leader>ct :silent !cleartool.exe lsvtree -g %<CR>
+map <leader>cd :silent !cleartool.exe diff -g -pre %<CR><C-c>
+map <leader>cD :!cleartool.exe diff -diff_format -pre %<CR>
+map <leader>cl :!ccase lsact -m<CR>
+" reserved for vimdiff map <leader>C <vim diff>
+map <leader>cc :silent !cleartool.exe co -nc -unres %<CR>
+map <leader>cu :silent !cleartool.exe unco %<CR>
+" reserved for ClearCase checkin - map <leader>i <checkin, prompt for message>
+
+
 " Search support
 map <leader>ff :grep <cword> *<CR><C-o>:clist<CR>:cc 
 map <leader>fr :grep -R <cword> *<CR><C-o>:clist<CR>:cc 
@@ -148,6 +164,18 @@ if has('signs')
 	map <leader>sx :sign unplace<CR>
 end
 
+" cscope support
+" use cscope for tagging
+set cscopetag
+set csto=0
+map <C-,>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+
+" TagList support
+filetype plugin on
+try
+	map <leader>l :execute 'TlistToggle'<CR>
+catch
+endtry
 
 " fold to current
 map <leader>z :'z,.fo<CR>
@@ -158,6 +186,7 @@ function! ConfigurePython()
 endfunction
 
 function! ConfigureC()
+    setlocal expandtab
 endfunction
 
 function! ConfigureMake()
@@ -205,6 +234,17 @@ function! ConfigureMatlab()
 	setlocal expandtab
 endfunction
 
+function! ConfigureSVPolicy()
+	setlocal expandtab
+endfunction
+
+" recognize Sandvine policy files
+autocmd BufRead policy.*		setlocal filetype=svpolicy
+autocmd BufRead *.policy.*		setlocal filetype=svpolicy
+autocmd BufRead *.policy		setlocal filetype=svpolicy
+autocmd BufRead *.ptsd			setlocal filetype=svpolicy
+autocmd BufRead *.cnd			setlocal filetype=svpolicy
+
 " recognize some non-standard extensions
 autocmd BufEnter *.hrl			setlocal filetype=erlang
 autocmd BufEnter *.pde			setlocal filetype=cpp
@@ -223,12 +263,17 @@ autocmd FileType vhdl			call ConfigureVHDL()
 autocmd FileType ruby			call ConfigureRuby()
 autocmd FileType erlang			call ConfigureErlang()
 autocmd FileType matlab			call ConfigureMatlab()
+autocmd FileType svpolicy		call ConfigureSVPolicy()
 
 " move swap somewhere more convienient
 if RunningWindows()
 	set directory=$TMP
 else
 	set directory=/home/alex/temp/swap,.,/var/tmp,/tmp
+end
+
+if RunningWindows()
+	set shell=C:\Programs\cygwin\bin\bash.exe
 end
 
 " save folds, etc on exit - load on start
@@ -251,9 +296,15 @@ endfunction
 
 " gui configuration sans .gvimrc
 if has('gui_running')
+    set t_Co=256
+
 	" color scheme for gui operation
-	let g:sienna_style='light'
-	colors sienna
+    "let g:moria_style='white'
+	"colors moria
+    colors xoria256
+
+	" decent default, 86 is way too huge and makes it a pain to position
+	set lines=70
 
 	" toggle width in GUI window
 	map <leader>w :call ToggleWidth()<CR>
@@ -275,7 +326,7 @@ if has('gui_running')
 		set lines=85
 	else
 		" linux preferred font
-		set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
+		set guifont=Bitstream\ Vera\ Sans\ Mono\ 8
 	end
 	
 	" use better labels for GUI tabs
