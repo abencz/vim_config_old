@@ -105,9 +105,9 @@ if version >= 700
 	" NERDTree support
 	try
 		map <leader>n :execute 'NERDTreeToggle ' . getcwd()<CR>
-		map <leader>N :NERDTree
-		map <leader>m :Bookmark
-		map <leader>' :BookmarkToRoot
+		map <leader>N :NERDTree 
+		map <leader>m :Bookmark 
+		map <leader>' :BookmarkToRoot 
 	catch
 	endtry
 endif
@@ -160,6 +160,7 @@ endfunction
 function! ConfigureC()
 endfunction
 
+
 function! ConfigureMake()
     setlocal noexpandtab
 endfunction
@@ -182,9 +183,6 @@ function! ConfigureErlang()
 	setlocal comments=n:%%,n:%
 endfunction
 
-function! ConfigureTCL()
-	setlocal expandtab
-endfunction
 
 function! ConfigureLatex()
 	setlocal spell
@@ -231,11 +229,6 @@ else
 	set directory=/home/alex/temp/swap,.,/var/tmp,/tmp
 end
 
-" save folds, etc on exit - load on start
-set viewoptions=folds
-autocmd BufWinLeave *.c,*.cpp,*.h,*.xml,*.xml.sample,*.conf mkview
-autocmd BufWinEnter *.c,*.cpp,*.h,*.xml,*.xml.sample,*.conf silent loadview
-
 " allow us to switch back and forth between 80 column mode and others
 let s:std_width = 80
 let s:col_width = 80
@@ -249,6 +242,20 @@ function! ToggleWidth()
 	endif
 endfunction
 
+function! Solarize(...)
+	if a:0 >=1
+		let &background=a:1
+	else
+		let &background='light'
+	endif
+	if a:0 >=2
+		let g:solarized_termcolors=a:2
+	else
+		let g:solarized_termcolors=16
+	endif
+	colorscheme solarized
+endfunction
+
 " gui configuration sans .gvimrc
 if has('gui_running')
 	" color scheme for gui operation
@@ -257,7 +264,7 @@ if has('gui_running')
 
 	" toggle width in GUI window
 	map <leader>w :call ToggleWidth()<CR>
-
+	
 	if RunningWindows()
 		" windows preferred font
 		set guifont=Consolas:h9
@@ -265,14 +272,14 @@ if has('gui_running')
 		set lines=999
 	elseif RunningMac()
 		" mac preferred font
-		"set guifont=DejaVu\ Sans\ Mono:h11
-		"set guifont=Inconsolata:h13
-		set guifont=Anonymous\ Pro:h11
+		""set guifont=DejaVu\ Sans\ Mono:h11
+		""set guifont=Bitstream\ Vera\ Sans\ Mono:h12
+		set guifont=Inconsolata:h13
 		" save a bit of vertical space with Inconsolata
 		set linespace=-1
 
-		colors pyte
-		set lines=85
+		colors camo
+		set lines=40
 	else
 		" linux preferred font
 		set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
@@ -287,7 +294,7 @@ else
 	" color scheme for terminal operation - special case if 256 colors are
 	" available
 	if &t_Co == 256
-		colorscheme xoria256
+		call Solarize()
 	else
 		colorscheme desert
 	endif
