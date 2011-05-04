@@ -127,18 +127,6 @@ map <leader>gi :cs find i <cword><CR>
 map <leader>## :!sudo vim %<CR>
 map <leader>#w :w !sudo tee %<CR>
 
-" ClearCase integration
-map <leader>ca :!cleartool.exe lsactivity -cact<CR>
-map <leader>ct :silent !cleartool.exe lsvtree -g %<CR>
-map <leader>cd :silent !cleartool.exe diff -g -pre %<CR><C-c>
-map <leader>cD :!cleartool.exe diff -diff_format -pre %<CR>
-map <leader>cl :!ccase lsact -m<CR>
-" reserved for vimdiff map <leader>C <vim diff>
-map <leader>cc :silent !cleartool.exe co -nc -unres %<CR>
-map <leader>cu :silent !cleartool.exe unco %<CR>
-" reserved for ClearCase checkin - map <leader>i <checkin, prompt for message>
-
-
 " Search support
 map <leader>ff :grep <cword> *<CR><C-o>:clist<CR>:cc 
 map <leader>fr :grep -R <cword> *<CR><C-o>:clist<CR>:cc 
@@ -232,25 +220,6 @@ function! ConfigureMatlab()
 	setlocal expandtab
 endfunction
 
-function! ConfigureSVPolicy()
-	setlocal expandtab
-endfunction
-
-" recognize Sandvine policy files
-autocmd BufRead policy.*		setlocal filetype=svpolicy
-autocmd BufRead *.policy.*		setlocal filetype=svpolicy
-autocmd BufRead *.policy		setlocal filetype=svpolicy
-autocmd BufRead *.ptsd			setlocal filetype=svpolicy
-autocmd BufRead *.cnd			setlocal filetype=svpolicy
-
-" recognize some non-standard extensions
-autocmd BufEnter *.hrl			setlocal filetype=erlang
-autocmd BufEnter *.pde			setlocal filetype=cpp
-autocmd BufEnter policy.conf	setlocal filetype=svpolicy
-autocmd BufEnter policy.conf.*  setlocal filetype=svpolicy
-autocmd BufEnter *.policy		setlocal filetype=svpolicy
-autocmd BufEnter *.policy.*		setlocal filetype=svpolicy
-
 " automagic
 autocmd FileType python			call ConfigurePython() 
 autocmd FileType c,cpp			call ConfigureC()
@@ -261,7 +230,6 @@ autocmd FileType vhdl			call ConfigureVHDL()
 autocmd FileType ruby			call ConfigureRuby()
 autocmd FileType erlang			call ConfigureErlang()
 autocmd FileType matlab			call ConfigureMatlab()
-autocmd FileType svpolicy		call ConfigureSVPolicy()
 
 " move swap somewhere more convienient
 if RunningWindows()
