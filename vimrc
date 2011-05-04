@@ -294,6 +294,20 @@ function! ToggleWidth()
 	endif
 endfunction
 
+function! Solarize(...)
+	if a:0 >= 1
+		let &background=a:1
+	else
+		let &background=light
+	endif
+	if a:0 >= 2
+		let g:solarized_termcolors=a:2
+	else
+		let g:solarized_termcolors=16
+	endif
+	colorscheme solarized
+endfunction
+
 " gui configuration sans .gvimrc
 if has('gui_running')
     set t_Co=256
@@ -322,7 +336,7 @@ if has('gui_running')
 		" save a bit of vertical space with Inconsolata
 		set linespace=-1
 
-		colors pyte
+		call Solarize('light', 256)
 		set lines=85
 	else
 		" linux preferred font
@@ -342,6 +356,7 @@ else
 	else
 		colorscheme desert
 	endif
+	call Solarize('light', 16)
 end
 
 " Search for selected text, forwards or backwards.
