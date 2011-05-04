@@ -287,7 +287,7 @@ function! Solarize(...)
 	if a:0 >= 1
 		let &background=a:1
 	else
-		let &background=light
+		let &background='light'
 	endif
 	if a:0 >= 2
 		let g:solarized_termcolors=a:2
