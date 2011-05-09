@@ -171,6 +171,10 @@ map <leader>z :'z,.fo<CR>
 " filetype settings
 function! ConfigurePython()
 	setlocal expandtab
+	setlocal foldmethod=indent
+	setlocal foldlevel=99
+	setlocal omnifunc=pythoncomplete#Complete
+	let g:SuperTabDefaultCompletionType = "context"
 endfunction
 
 function! ConfigureC()
@@ -230,6 +234,9 @@ autocmd FileType vhdl			call ConfigureVHDL()
 autocmd FileType ruby			call ConfigureRuby()
 autocmd FileType erlang			call ConfigureErlang()
 autocmd FileType matlab			call ConfigureMatlab()
+
+" PEP8 checking for Python
+let g:pep8_map='<leader>8'
 
 " move swap somewhere more convienient
 if RunningWindows()
