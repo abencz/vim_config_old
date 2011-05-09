@@ -289,11 +289,12 @@ if has('gui_running')
 		" mac preferred font
 		""set guifont=DejaVu\ Sans\ Mono:h11
 		""set guifont=Bitstream\ Vera\ Sans\ Mono:h12
-		set guifont=Inconsolata:h13
+		"set guifont=Inconsolata:h13
+		set guifont=Anonymous\ Pro:h11
 		" save a bit of vertical space with Inconsolata
 		set linespace=-1
 
-		call Solarize('light', 256)
+		call Solarize('dark', 256)
 		set lines=85
 	else
 		" linux preferred font
@@ -313,7 +314,7 @@ else
 	else
 		colorscheme desert
 	endif
-	call Solarize('light', 16)
+	call Solarize('dark', 16)
 end
 
 " Search for selected text, forwards or backwards.
