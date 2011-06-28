@@ -22,3 +22,6 @@
 [submodule "bundle/pep8"]
 	path = bundle/pep8
 	url = https://github.com/vim-scripts/pep8.git
+[submodule "bundle/vim-filesearch"]
+	path = bundle/vim-filesearch
+	url = https://github.com/jeetsukumaran/vim-filesearch.git
