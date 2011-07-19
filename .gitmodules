@@ -25,3 +25,6 @@
 [submodule "bundle/vim-filesearch"]
 	path = bundle/vim-filesearch
 	url = https://github.com/jeetsukumaran/vim-filesearch.git
+[submodule "bundle/vim-notes"]
+	path = bundle/vim-notes
+	url = https://github.com/xolox/vim-notes.git
