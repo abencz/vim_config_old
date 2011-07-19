@@ -294,7 +294,7 @@ else
 	" color scheme for terminal operation - special case if 256 colors are
 	" available
 	if &t_Co == 256
-		call Solarize()
+		call Solarize('dark')
 	else
 		colorscheme desert
 	endif
