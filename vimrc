@@ -81,6 +81,9 @@ set tags=tags;/
 " mac file format support
 set fileformats=unix,dos,mac
 
+" escape insert mode with jj 
+imap jj <Esc>
+
 " keybindings
 map <F8> :set list!<CR>
 
@@ -104,7 +107,7 @@ if version >= 700
 	
 	" NERDTree support
 	try
-		map <leader>n :execute 'NERDTreeToggle ' . getcwd()<CR>
+		map <leader>n :execute 'NERDTreeToggle ' . escape(getcwd(), '\ ')<CR>
 		map <leader>N :NERDTree 
 		map <leader>m :Bookmark 
 		map <leader>' :BookmarkToRoot 
