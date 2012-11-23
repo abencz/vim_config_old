@@ -359,3 +359,5 @@ endfunction
 
 " Clear buffer and copy all matches
 map <leader>y 0"+y0:g//CopyMatches<CR>
+
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
