@@ -9,6 +9,7 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
+Bundle 'Valloric/YouCompleteMe'
 
 
 " remove old autocommands
@@ -106,8 +107,8 @@ if version >= 700
 	" keybindings for tabbed windows
 	map <leader>t :tabnew 
 	map <leader>T :tabnew<CR>
-	map <leader>d :tabclose<CR>
-	map <leader>D :tabonly<CR>
+	map <leader>D :tabclose<CR>
+	""map <leader>D :tabonly<CR>
 
 	" shell integration
 	map <leader>hh :ConqueTerm
@@ -192,7 +193,6 @@ function! ConfigureC()
     setlocal expandtab
 endfunction
 
-
 function! ConfigureMake()
     setlocal noexpandtab
 endfunction
@@ -215,7 +215,6 @@ function! ConfigureErlang()
 	setlocal comments=n:%%,n:%
 endfunction
 
-
 function! ConfigureLatex()
 	setlocal spell
 	setlocal textwidth=80
@@ -228,8 +227,6 @@ function! ConfigureVHDL()
 	setlocal shiftwidth=2
 	setlocal softtabstop=2
 endfunction
-
-
 
 function! ConfigureMatlab()
 	setlocal expandtab
