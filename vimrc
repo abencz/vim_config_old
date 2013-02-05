@@ -2,6 +2,15 @@
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+
 " remove old autocommands
 autocmd!
 
@@ -37,7 +46,6 @@ set history=200
 " general ui settings
 set ruler
 set showcmd
-set nocompatible
 
 " shorten some command line tokens
 set shortmess=atI
@@ -285,10 +293,10 @@ if has('gui_running')
     colors xoria256
 
 	" decent default, 86 is way too huge and makes it a pain to position
-	set lines=70
+	"set lines=70
 
 	" toggle width in GUI window
-	map <leader>w :call ToggleWidth()<CR>
+	map <leader>W :call ToggleWidth()<CR>
 	
 	if RunningWindows()
 		" windows preferred font
@@ -305,7 +313,7 @@ if has('gui_running')
 		set linespace=-1
 
 		call Solarize('dark', 256)
-		set lines=85
+		"set lines=85
 	else
 		" linux preferred font
 		set guifont=Bitstream\ Vera\ Sans\ Mono\ 8
