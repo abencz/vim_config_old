@@ -8,12 +8,12 @@ filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
+" let vundle manage vundle
 Bundle 'gmarik/vundle'
-Bundle 'kein/ctrlp'
+
+Bundle 'kien/ctrlp.vim'
 Bundle 'gregsexton/gitv'
 Bundle 'scrooloose/nerdtree'
-Bundle 'vim-scripts/pep8'
-Bundle 'msanders/snipmate'
 Bundle 'tpope/vim-surround'
 Bundle 'godlygeek/tabular'
 Bundle 'altercation/vim-colors-solarized'
@@ -21,6 +21,9 @@ Bundle 'jeetsukumaran/vim-filesearch'
 Bundle 'tpope/vim-fugitive'
 Bundle 'xolox/vim-notes'
 
+" disabled due to errors/warnings
+"Bundle 'vim-scripts/pep8'
+"Bundle 'msanders/snipmate.vim'
 
 " remove old autocommands
 autocmd!
