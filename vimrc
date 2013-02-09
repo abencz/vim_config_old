@@ -9,6 +9,17 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
+Bundle 'kein/ctrlp'
+Bundle 'gregsexton/gitv'
+Bundle 'scrooloose/nerdtree'
+Bundle 'vim-scripts/pep8'
+Bundle 'msanders/snipmate'
+Bundle 'tpope/vim-surround'
+Bundle 'godlygeek/tabular'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'jeetsukumaran/vim-filesearch'
+Bundle 'tpope/vim-fugitive'
+Bundle 'xolox/vim-notes'
 
 
 " remove old autocommands
